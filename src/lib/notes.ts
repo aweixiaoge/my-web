@@ -12,7 +12,7 @@ export interface Note {
   href: string;
 }
 
-const DEFAULT_AUTHOR = '@qianli';
+const DEFAULT_AUTHOR = '@aweige';
 
 // The notes carry no frontmatter, so the date comes from the file's creation
 // time; an explicit `date:` still wins, which is what keeps the dates correct

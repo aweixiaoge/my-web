@@ -10,6 +10,6 @@ const rendered = await Promise.all(entries.map((entry) => render(entry)));
 const headings = rendered.flatMap(({ headings }) => headings);
 ---
 
-<DetailLayout title="联系 - 千里的站点" heading="联系" headings={headings}>
+<DetailLayout title="联系 - 阿伟哥的站点" heading="联系" headings={headings}>
 	{rendered.map(({ Content }) => <Content />)}
 </DetailLayout>
