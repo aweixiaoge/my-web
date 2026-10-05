@@ -69,5 +69,11 @@ const { title, description, href, cover } = Astro.props;
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-body);
     line-height: var(--line-height-body);
+    
+    display: -webkit-box;
+    -webkit-line-clamp: 3;        /* 最多显示 3 行 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;      /* 超出显示省略号 */
   }
 </style>
