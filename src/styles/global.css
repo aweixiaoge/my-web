@@ -1,11 +1,29 @@
 :root {
-  /* Figma style guide tokens */
-  --surface-default: #bbbde3;
-  --brand-primary-2: #1b2a4a;
-  --brand-secondary-2: #c9a96e;
-  --brand-secondary-4: #e07a5f;
-  --text-primary: #212121;
-  --icon-default: #212121;
+  /* Ink & Paper: deep slate chrome (header/footer) over a warm paper page,
+     white cards on sand cover panels, and clay as the single accent. */
+  --chrome-bg: #1e2a36;
+  --chrome-ink: #f4f1ec;
+  --chrome-muted: #b9c2cb;
+  --chrome-accent: #e8916b;
+  --chrome-line: rgba(244, 241, 236, 0.12);
+
+  --page-bg: #f7f5f1;
+  --card-bg: #ffffff;
+  --line: rgba(30, 42, 54, 0.1);
+  --line-strong: rgba(30, 42, 54, 0.2);
+  --ink: #1e2a36;
+  --muted: #5f6b76;
+  --accent: #b5562f;
+  --accent-soft: rgba(181, 86, 47, 0.35);
+  --tint: #f3eee6;
+  --tint-deep: #e6ddcf;
+  --radius-card: 16px;
+  --shadow-card: 0 1px 2px rgba(30, 42, 54, 0.04), 0 8px 24px -12px rgba(30, 42, 54, 0.12);
+  --shadow-card-hover: 0 2px 4px rgba(30, 42, 54, 0.05), 0 18px 40px -16px rgba(30, 42, 54, 0.22);
+  --shadow-cover: drop-shadow(0 10px 14px rgba(30, 42, 54, 0.2));
+
+  /* The page gutter; narrows on small screens below. */
+  --gutter: 80px;
 
   /* H1: SF Pro Bold 48/56 */
   --font-size-h1: 48px;
@@ -37,6 +55,18 @@
     sans-serif;
 }
 
+@media (max-width: 1024px) {
+  :root {
+    --gutter: 40px;
+  }
+}
+
+@media (max-width: 720px) {
+  :root {
+    --gutter: 16px;
+  }
+}
+
 *,
 *::before,
 *::after {
@@ -45,13 +75,99 @@
 
 body {
   margin: 0;
+  background: var(--page-bg);
+  color: var(--ink);
   font-family: var(--font-family-sans);
 }
 
 /* The Figma pages are fixed 1512px frames: keep the content column at that
-   width and center it on wider viewports (the 80px gutters stay 80px), while
-   the header and footer stay full-width. */
+   width and center it on wider viewports. */
 .main {
   max-width: 1512px;
   margin: 0 auto;
+  padding: 72px var(--gutter) 96px;
+}
+
+@media (max-width: 720px) {
+  .main {
+    padding-top: 40px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Every page and Home section opens with the same heading: navy, with a short
+   terracotta rule underneath. */
+.page-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  color: var(--ink);
+  font-size: 40px;
+  font-weight: var(--font-weight-h2);
+  line-height: 48px;
+  letter-spacing: 0.02em;
+}
+
+.page-heading::after {
+  content: '';
+  width: 40px;
+  height: 3px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+@media (max-width: 720px) {
+  .page-heading {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+/* "Read more" on books and notes: an outlined pill that fills navy. */
+.pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: var(--font-weight-body-bold);
+  line-height: 20px;
+  text-decoration: none;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.pill-link::after {
+  content: '→';
+  transition: transform 0.2s ease;
+}
+
+.pill-link:hover,
+.pill-link:focus-visible {
+  color: #ffffff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.pill-link:hover::after {
+  transform: translateX(3px);
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
 }

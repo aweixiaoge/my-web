@@ -26,54 +26,75 @@ const { title, description, href, cover } = Astro.props;
   .tutorial {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    border: 1px solid var(--brand-primary-2);
-    color: var(--text-primary);
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    color: var(--ink);
     text-decoration: none;
-    border-radius: 10px
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .tutorial:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .tutorial__media {
     width: 100%;
-    height: 318px;
+    height: 260px;
     overflow: hidden;
+    background: linear-gradient(160deg, var(--tint), var(--tint-deep));
   }
 
   .tutorial__image {
     display: block;
     width: 100%;
     height: 100%;
+    padding: 28px;
     object-fit: contain;
+    filter: var(--shadow-cover);
   }
 
   .tutorial__text {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    width: 100%;
-    max-width: 421px;
-    min-height: 93px;
-    padding: 0 10px;
+    gap: 10px;
+    padding: 24px 28px 28px;
   }
 
   .tutorial__title {
     margin: 0;
-    font-size: var(--font-size-title);
-    font-weight: var(--font-weight-title);
-    line-height: var(--line-height-title);
+    font-size: 22px;
+    font-weight: var(--font-weight-h2);
+    line-height: 30px;
+    transition: color 0.2s ease;
+  }
+
+  .tutorial:hover .tutorial__title {
+    color: var(--accent);
   }
 
   .tutorial__description {
     margin: 0;
+    color: var(--muted);
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-body);
-    line-height: var(--line-height-body);
-    
+    line-height: 26px;
+
     display: -webkit-box;
     -webkit-line-clamp: 3;        /* 最多显示 3 行 */
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;      /* 超出显示省略号 */
+  }
+
+  @media (max-width: 720px) {
+    .tutorial__media {
+      height: 220px;
+    }
   }
 </style>

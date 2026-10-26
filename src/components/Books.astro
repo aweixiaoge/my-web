@@ -6,7 +6,7 @@ const books = (await getBooks()).slice(0, 2);
 ---
 
 <section class="books">
-  <h2 class="books__heading">书籍</h2>
+  <h2 class="page-heading">书籍</h2>
   <div class="books__list">
     {books.map((book, index) => <BookCard {...book} imageLeft={index % 2 === 1} />)}
   </div>
@@ -16,20 +16,12 @@ const books = (await getBooks()).slice(0, 2);
   .books {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-  }
-
-  .books__heading {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: var(--font-size-h2);
-    font-weight: var(--font-weight-h2);
-    line-height: var(--line-height-h2);
+    gap: 32px;
   }
 
   .books__list {
     display: flex;
     flex-direction: column;
-    gap: 60px;
+    gap: 28px;
   }
 </style>

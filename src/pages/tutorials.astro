@@ -12,7 +12,7 @@ const tutorials = await getTutorials();
 	<Header />
 	<main class="main">
 		<section class="tutorials">
-			<h2 class="tutorials__heading">教程</h2>
+			<h2 class="page-heading">教程</h2>
 			<div class="tutorials__list">
 				{tutorials.map((tutorial) => <TutorialCard {...tutorial} />)}
 			</div>
@@ -26,27 +26,30 @@ const tutorials = await getTutorials();
 		display: flex;
 		flex-direction: column;
 		gap: 50px;
-		padding: 80px;
 	}
 
 	.tutorials {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
-	}
-
-	.tutorials__heading {
-		margin: 0;
-		color: var(--text-primary);
-		font-size: var(--font-size-h2);
-		font-weight: var(--font-weight-h2);
-		line-height: var(--line-height-h2);
+		gap: 32px;
 	}
 
 	.tutorials__list {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
-		column-gap: 30px;
-		row-gap: 50px;
+		gap: 28px;
+	}
+
+	@media (max-width: 1024px) {
+		.tutorials__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 720px) {
+		.tutorials__list {
+			grid-template-columns: minmax(0, 1fr);
+			row-gap: 20px;
+		}
 	}
 </style>

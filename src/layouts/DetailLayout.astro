@@ -19,7 +19,7 @@ const { title, heading, backHref, backLabel, headings } = Astro.props;
 <BaseLayout title={title}>
 	<Header />
 	<main class="main">
-		{heading && <h2 class="detail__heading">{heading}</h2>}
+		{heading && <h2 class="page-heading">{heading}</h2>}
 		<div class="detail">
 			<Outline headings={headings} />
 			<div class="detail__content">
@@ -37,45 +37,42 @@ const { title, heading, backHref, backLabel, headings } = Astro.props;
 	.main {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
-		padding: 80px;
-	}
-
-	.detail__heading {
-		margin: 0;
-		color: var(--text-primary);
-		font-size: var(--font-size-h2);
-		font-weight: var(--font-weight-h2);
-		line-height: var(--line-height-h2);
+		gap: 40px;
 	}
 
 	.detail {
 		display: flex;
 		align-items: flex-start;
-		gap: 30px;
+		gap: 56px;
 	}
 
 	.detail__content {
 		display: flex;
 		flex: 1 1 0;
 		flex-direction: column;
-		gap: 50px;
+		gap: 40px;
 		min-width: 0;
 	}
 
 	.detail__back {
-		color: var(--text-primary);
-		font-size: var(--font-size-title);
-		font-weight: var(--font-weight-title);
-		line-height: var(--line-height-title);
+		align-self: flex-start;
+		color: var(--muted);
+		font-size: var(--font-size-body);
+		font-weight: var(--font-weight-body-bold);
+		line-height: var(--line-height-body);
 		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.detail__back:hover {
+		color: var(--accent);
 	}
 
 	.reading {
-		color: var(--text-primary);
+		color: var(--ink);
 		font-size: var(--font-size-body);
 		font-weight: var(--font-weight-body);
-		line-height: var(--line-height-body);
+		line-height: 28px;
 	}
 
 	/* The reading area is an empty placeholder in the design, so the markdown
@@ -143,7 +140,13 @@ const { title, heading, backHref, backLabel, headings } = Astro.props;
 	}
 
 	.reading :global(a) {
-		color: var(--brand-secondary-4);
+		color: var(--accent);
+		text-decoration-color: var(--accent-soft);
+		text-underline-offset: 3px;
+	}
+
+	.reading :global(a:hover) {
+		text-decoration-color: currentColor;
 	}
 
 	.reading :global(strong) {
@@ -157,8 +160,8 @@ const { title, heading, backHref, backLabel, headings } = Astro.props;
 
 	.reading :global(:not(pre) > code) {
 		padding: 2px 6px;
-		background: var(--surface-default);
-		border-radius: 4px;
+		background: var(--tint);
+		border-radius: 6px;
 	}
 
 	.reading :global(table) {
@@ -169,33 +172,44 @@ const { title, heading, backHref, backLabel, headings } = Astro.props;
 	.reading :global(th),
 	.reading :global(td) {
 		padding: 12px 16px;
-		border: 1px solid var(--brand-primary-2);
+		border: 1px solid var(--line-strong);
 		text-align: left;
 		vertical-align: top;
 		word-break: break-word;
 	}
 
 	.reading :global(th) {
+		background: var(--tint);
 		font-weight: var(--font-weight-body-bold);
 	}
 
 	.reading :global(hr) {
 		margin: 40px 0;
 		border: 0;
-		border-top: 1px solid var(--brand-primary-2);
+		border-top: 1px solid var(--line-strong);
 	}
 
 	/* Notes use fenced blocks for prose as much as for code, so they wrap
 	   instead of scrolling sideways. Shiki owns the block's colours. */
 	.reading :global(pre) {
-		padding: 20px;
-		border-radius: 4px;
+		padding: 20px 24px;
+		border-radius: 12px;
 		white-space: pre-wrap;
 		word-break: break-word;
 	}
 
 	.reading :global(blockquote) {
-		padding-left: 20px;
-		border-left: 4px solid var(--brand-secondary-4);
+		padding: 4px 0 4px 20px;
+		color: var(--muted);
+		border-left: 3px solid var(--accent);
+	}
+
+	/* Below tablet width the outline column would squeeze the article, so it
+	   moves above the reading area as a scrollable card. */
+	@media (max-width: 1024px) {
+		.detail {
+			flex-direction: column;
+			gap: 32px;
+		}
 	}
 </style>

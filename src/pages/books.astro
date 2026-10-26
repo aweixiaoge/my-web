@@ -12,7 +12,7 @@ const books = await getBooks();
 	<Header />
 	<main class="main">
 		<section class="books">
-			<h2 class="books__heading">书籍</h2>
+			<h2 class="page-heading">书籍</h2>
 			<div class="books__list">
 				{books.map((book) => <BookCard {...book} imageLeft textAlign="left" />)}
 			</div>
@@ -22,30 +22,25 @@ const books = await getBooks();
 </BaseLayout>
 
 <style>
-	.main {
-		display: flex;
-		flex-direction: column;
-		gap: 50px;
-		padding: 80px;
-	}
-
 	.books {
 		display: flex;
 		flex-direction: column;
-		gap: 18px;
-	}
-
-	.books__heading {
-		margin: 0;
-		color: var(--text-primary);
-		font-size: var(--font-size-h2);
-		font-weight: var(--font-weight-h2);
-		line-height: var(--line-height-h2);
+		gap: 40px;
 	}
 
 	.books__list {
 		display: flex;
 		flex-direction: column;
-		gap: 50px;
+		gap: 28px;
+	}
+
+	@media (max-width: 720px) {
+		.books {
+			gap: 28px;
+		}
+
+		.books__list {
+			gap: 20px;
+		}
 	}
 </style>

@@ -11,7 +11,7 @@ const notes = (await getNotes()).slice(0, limit);
 ---
 
 <section class="notes">
-  <h2 class="notes__heading">笔记</h2>
+  <h2 class="page-heading">笔记</h2>
   <div class="notes__list">
     {
       notes.map((note) => (
@@ -26,7 +26,7 @@ const notes = (await getNotes()).slice(0, limit);
           <div class="note__content">
             <h3 class="note__title">{note.title}</h3>
             <p class="note__excerpt">{note.excerpt}</p>
-            <a class="note__link" href={note.href}>
+            <a class="note__link pill-link" href={note.href}>
               Read more
             </a>
           </div>
@@ -40,31 +40,28 @@ const notes = (await getNotes()).slice(0, limit);
   .notes {
     display: flex;
     flex-direction: column;
-    gap: 18px;
-  }
-
-  .notes__heading {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: var(--font-size-h2);
-    font-weight: var(--font-weight-h2);
-    line-height: var(--line-height-h2);
+    gap: 32px;
   }
 
   .notes__list {
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    padding: 30px;
-    border: 1px solid var(--brand-primary-2);
-    border-radius: 10px;
+    padding: 8px 40px;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
   }
 
   .note {
     display: flex;
     align-items: flex-start;
-    gap: 30px;
-    padding: 20px 0;
+    gap: 32px;
+    padding: 32px 0;
+  }
+
+  .note + .note {
+    border-top: 1px solid var(--line);
   }
 
   .note__meta {
@@ -80,11 +77,18 @@ const notes = (await getNotes()).slice(0, limit);
     flex-direction: column;
     width: 100%;
     margin: 0;
-    color: var(--text-primary);
+    color: var(--ink);
     font-size: var(--font-size-h2);
     font-weight: var(--font-weight-h2);
     line-height: var(--line-height-h2);
     text-align: right;
+  }
+
+  .note__date span + span {
+    color: var(--accent);
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body-bold);
+    line-height: var(--line-height-body);
   }
 
   /* The handle is a 55x55 box whose text sits bottom-right, then the whole box
@@ -97,10 +101,10 @@ const notes = (await getNotes()).slice(0, limit);
     height: 55px;
     margin: 0;
     transform: rotate(-90deg);
-    color: var(--text-primary);
-    font-size: var(--font-size-body);
+    color: var(--muted);
+    font-size: 14px;
     font-weight: var(--font-weight-body);
-    line-height: var(--line-height-body);
+    line-height: 20px;
     text-align: right;
   }
 
@@ -110,16 +114,16 @@ const notes = (await getNotes()).slice(0, limit);
     min-width: 0;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
-    color: var(--text-primary);
+    gap: 12px;
   }
 
   .note__title {
     width: 100%;
     margin: 0;
-    font-size: var(--font-size-title);
-    font-weight: var(--font-weight-title);
-    line-height: var(--line-height-title);
+    color: var(--ink);
+    font-size: 22px;
+    font-weight: var(--font-weight-h2);
+    line-height: 30px;
   }
 
   .note__excerpt {
@@ -129,16 +133,38 @@ const notes = (await getNotes()).slice(0, limit);
     overflow: hidden;
     width: 100%;
     margin: 0;
+    color: var(--muted);
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-body);
-    line-height: var(--line-height-body);
+    line-height: 26px;
   }
 
   .note__link {
-    color: var(--brand-secondary-4);
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-body-bold);
-    line-height: var(--line-height-body);
-    text-decoration: none;
+    margin-top: 6px;
+  }
+
+  @media (max-width: 720px) {
+    .notes__list {
+      padding: 0 20px;
+    }
+
+    .note {
+      gap: 16px;
+      padding: 24px 0;
+    }
+
+    .note__meta {
+      flex-basis: 44px;
+    }
+
+    .note__date {
+      font-size: var(--font-size-title);
+      line-height: var(--line-height-title);
+    }
+
+    .note__title {
+      font-size: 20px;
+      line-height: 28px;
+    }
   }
 </style>

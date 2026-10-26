@@ -26,7 +26,7 @@ const {
   <div class="book__text">
     <h3 class="book__title">{title}</h3>
     <p class="book__subtitle">{subtitle}</p>
-    <a class="book__link" href={href}>
+    <a class="book__link pill-link" href={href}>
       Read more
     </a>
   </div>
@@ -38,62 +38,72 @@ const {
 <style>
   .book {
     display: flex;
-    min-height: 310px;
-    border: 1px solid var(--brand-primary-2);
-    border-radius: 10px;
+    min-height: 260px;
+    overflow: hidden;
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+  }
+
+  .book:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card-hover);
   }
 
   .book__text {
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
-    gap: 37px;
-    padding: 50px;
-    color: var(--text-primary);
-    
+    justify-content: center;
+    gap: 14px;
+    padding: 40px 48px;
   }
 
   .book__title {
     margin: 0;
-    font-size: var(--font-size-h2);
+    color: var(--ink);
+    font-size: 26px;
     font-weight: var(--font-weight-h2);
-    line-height: var(--line-height-h2);
+    line-height: 34px;
+    letter-spacing: 0.01em;
   }
 
   .book__subtitle {
+    max-width: 46em;
     margin: 0;
+    color: var(--muted);
     font-size: var(--font-size-body);
     font-weight: var(--font-weight-body);
-    line-height: var(--line-height-body);
+    line-height: 26px;
   }
 
   .book__link {
-    color: var(--brand-secondary-4);
-    font-size: var(--font-size-body);
-    font-weight: var(--font-weight-body-bold);
-    line-height: var(--line-height-body);
-    text-decoration: none;
+    align-self: flex-start;
+    margin-top: 10px;
   }
 
   .book__panel {
     position: relative;
-    flex: 0 0 40.6065%;
+    flex: 0 0 34%;
     overflow: hidden;
-    background: linear-gradient(to bottom, #c9a96e, #f5e6c8);
-    border-radius: 10px;
+    background: linear-gradient(160deg, var(--tint), var(--tint-deep));
   }
 
   /* Covers arrive at whatever aspect ratio the upload has; contain keeps the
-     whole cover visible and lets the panel gradient fill the rest. */
+     whole cover visible and lets the panel tint fill the rest. */
   .book__cover {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    padding: 24px;
+    padding: 28px;
     object-fit: contain;
-    
+    filter: var(--shadow-cover);
   }
 
   .book--image-left .book__panel {
@@ -104,11 +114,35 @@ const {
     order: 2;
   }
 
-  .book--image-left .book__link {
+  .book--align-right .book__text {
+    align-items: flex-end;
     text-align: right;
   }
 
-  .book--align-right .book__text {
-    text-align: right;
+  .book--align-right .book__link {
+    align-self: flex-end;
+  }
+
+  @media (max-width: 720px) {
+    .book,
+    .book--image-left {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .book__panel {
+      flex-basis: 220px;
+      order: 1;
+    }
+
+    .book__text {
+      order: 2;
+      padding: 24px;
+    }
+
+    .book__title {
+      font-size: 22px;
+      line-height: 30px;
+    }
   }
 </style>

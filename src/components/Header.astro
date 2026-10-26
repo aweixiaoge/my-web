@@ -42,11 +42,9 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     justify-content: center;
     /* 100px tall, but free to grow when the nav wraps on narrow viewports. */
     min-height: 100px;
-    padding: 10px 80px;
-    background-color: var(--surface-default);
-    border: 1px solid var(--brand-primary-2);
-    border-left: none;
-    border-right: none;
+    padding: 10px var(--gutter);
+    background-color: var(--chrome-bg);
+    border-bottom: 1px solid var(--chrome-line);
   }
 
   .header__inner {
@@ -61,7 +59,7 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
 
   .header__title {
     margin: 0;
-    color: var(--text-primary);
+    color: var(--chrome-ink);
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-h1);
     line-height: var(--line-height-h1);
@@ -72,21 +70,26 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
-    gap: 20px;
+    gap: 28px;
   }
 
   .nav-item {
     display: flex;
     align-items: center;
-    gap: 19px;
-    color: var(--text-primary);
+    gap: 10px;
+    color: var(--chrome-muted);
     text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-item:hover {
+    color: var(--chrome-ink);
   }
 
   /* The design marks the current page by recolouring the icon and the label
      together, so the icon is masked and painted with currentColor. */
   .nav-item[aria-current='page'] {
-    color: var(--brand-secondary-4);
+    color: var(--chrome-accent);
   }
 
   .nav-item__icon {
@@ -108,5 +111,37 @@ const isCurrent = (href: string) => currentPath === href || currentPath.startsWi
     font-weight: var(--font-weight-title);
     line-height: var(--line-height-title);
     white-space: nowrap;
+  }
+
+  @media (max-width: 720px) {
+    .header {
+      min-height: 0;
+    }
+
+    .header__title {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    .header__nav {
+      column-gap: 18px;
+      row-gap: 10px;
+    }
+
+    .nav-item {
+      gap: 6px;
+    }
+
+    .nav-item__icon {
+      width: 22px;
+      height: 22px;
+      -webkit-mask-size: contain;
+      mask-size: contain;
+    }
+
+    .nav-item__label {
+      font-size: 17px;
+      line-height: 24px;
+    }
   }
 </style>
