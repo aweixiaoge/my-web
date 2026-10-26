@@ -11,6 +11,7 @@ export interface Tutorial {
   title: string;
   description: string;
   cover?: ImageMetadata;
+  coverFit: 'contain' | 'cover';
   href: string;
 }
 
@@ -63,6 +64,7 @@ export async function getTutorials(): Promise<Tutorial[]> {
         title,
         description: entry.data.description ?? firstParagraph(body, title),
         cover: folder ? coversByFolder.get(folder) : undefined,
+        coverFit: entry.data.coverFit,
         // The glob loader ids entries by their folder, so ids stay unique even
         // though the tutorials share a filename.
         href: `/tutorials/${entry.id}`,

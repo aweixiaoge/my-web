@@ -1,3 +1,8 @@
+---
+typora-root-url: ../../../../public
+coverFit: cover
+---
+
 # 记录vibe coding个人博客网站
 
 简介：这是一个编程小白，在AI时代，利用claude code来vibe coding的第一个项目，全程属于摸石头过河，从简单的blog网站开始，学习AI，一上手就做真项目，自己就能用的项目。建立这个blog网站，一是自己真的需要，刚好可以记录我的学习笔记，各种教程，还有我正在写的书（哈哈，虽然还没写完，看着还有点幼稚）；二是blog网站简单，适合我这个0基础小白从头开始做。
@@ -83,7 +88,7 @@ export CLAUDE_CODE_AUTO_COMPACT_WINDOW=786432
 
 这些配置好后，打开terminal，任意一个项目下，我输入claude，启动claude code.
 
-<img src="../../../../public/assets/tutorials/tutorial-1/2.png" style="zoom:30%;" />
+<img src="/assets/tutorials/tutorial-1/2.png" style="zoom:30%;" />
 
 
 
@@ -186,7 +191,7 @@ let's develop home page according to figma design, figma is: xxxxx
 
 这里是你figma设计的链接，如下图所示，先选中你要开发的layer，再右键, 在copy/paste as中选择copy link to selection,如下图所示)
 
-<img src="../../../../public/assets/tutorials/tutorial-1/1.png" style="zoom:30%;" />
+<img src="/assets/tutorials/tutorial-1/1.png" style="zoom:30%;" />
 
 之后，figma就一顿操作，中途偶尔会给你一些选择，不要害怕，看清楚它的提示，一般它会给你最优的选项，你就按enter。
 

@@ -7,14 +7,19 @@ interface Props {
   description: string;
   href: string;
   cover?: ImageMetadata;
+  coverFit?: 'contain' | 'cover';
 }
 
-const { title, description, href, cover } = Astro.props;
+const { title, description, href, cover, coverFit = 'contain' } = Astro.props;
 ---
 
 <a class="tutorial" href={href}>
   <div class="tutorial__media">
-    <img class="tutorial__image" src={cover?.src ?? bookStack.src} alt="" />
+    <img
+      class:list={['tutorial__image', cover && coverFit === 'cover' && 'tutorial__image--fill']}
+      src={cover?.src ?? bookStack.src}
+      alt=""
+    />
   </div>
   <div class="tutorial__text">
     <h3 class="tutorial__title">{title}</h3>
@@ -57,6 +62,12 @@ const { title, description, href, cover } = Astro.props;
     padding: 28px;
     object-fit: contain;
     filter: var(--shadow-cover);
+  }
+
+  .tutorial__image--fill {
+    padding: 0;
+    object-fit: cover;
+    filter: none;
   }
 
   .tutorial__text {

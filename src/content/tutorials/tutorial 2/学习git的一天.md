@@ -1,3 +1,7 @@
+---
+coverFit: cover
+---
+
 # 学习git的一天
 
 想要用AI工具进行vibe coding来开发app，工具等，没有git管理真的寸步难行。从今往后，有了AI，我的网站，mac电子书阅读器，英语单词句子背诵app，obsidian的主题，我都自己做，可以做自己想要的功能。感谢AI，为此，我又学习了一遍git。

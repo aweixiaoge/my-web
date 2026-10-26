@@ -16,6 +16,8 @@ const tutorials = defineCollection({
   schema: z.object({
     title: z.string().optional(),
     description: z.string().optional(),
+    // 'cover' fills the card's image frame edge to edge; 'contain' insets it on the tint.
+    coverFit: z.enum(['contain', 'cover']).default('contain'),
     order: z.number().default(0),
   }),
 });

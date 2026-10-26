@@ -1,6 +1,6 @@
 # Project: My Personal Blog
 
-Astro static blog. Deploys to GitHub Pages via GitHub Actions.
+Astro static blog. Deploys to Cloudflare (`@astrojs/cloudflare` adapter).
 Follow Figma design to develop this website.
 
 ## Commands
@@ -22,8 +22,9 @@ Follow Figma design to develop this website.
 - Styling: Use scoped `<style>` in `.astro` files. No Tailwind unless added.
 
 ## Gotchas
-- `yarn build` outputs to `dist/`
+- `yarn build` outputs to `dist/` (static site in `dist/client/`, because of the Cloudflare adapter)
 - Never edit files in `dist/` — it's generated
+- Reference files in `public/` by root URL: `public/assets/x.png` → `/assets/x.png`. Never write `../public/...` in Markdown — it works in `yarn dev` but 404s in production.
 
 
 <!-- ## Development
